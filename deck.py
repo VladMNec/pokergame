@@ -35,8 +35,10 @@ class Deck:
             for i in range(0, 5):
                 if i not in change:
                     new_hand.append(self.hand[i])
+            self.hand = new_hand
 
 
     def card_drop(self):
         drop = input("Choose cards to drop (0-4), with space between each number").split(" ")
+        drop = list(map(int, drop))
         self.second_draw(change=drop)
