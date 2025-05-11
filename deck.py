@@ -4,6 +4,7 @@ NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 KIND = ["S", "C", "H", "D"]
 
 class Deck:
+    # Build the deck
     def __init__(self):
         self.deck = []
         self.seen = set()
@@ -13,10 +14,12 @@ class Deck:
                 card = f"{n}" + k
                 self.deck.append(card)
 
+    # Draw random card
     def draw_card(self):
         new_card = random.randint(0, 51)
         return self.deck[new_card]
 
+    # Draw starting hand
     def first_draw(self):
         while len(self.hand) < 5:
             new_card = self.draw_card()
@@ -24,6 +27,7 @@ class Deck:
                 self.seen.add(new_card)
                 self.hand.append(new_card)
     
+    # Draw second hand
     def second_draw(self, change=list()):
         if len(change) > 0:
             change.sort()
@@ -38,12 +42,13 @@ class Deck:
             self.hand = new_hand
             self.first_draw()
 
-
+    # Choose cards to drop
     def card_drop(self):
-        drop = input("Choose cards to drop (0-4), with space between each number").split(" ")
+        drop = input("Choose cards to drop (0-4), with space between each number: ").split(" ")
         drop = list(map(int, drop))
         self.second_draw(change=drop)
 
+    # Clear the cards of the previous hand
     def clear_hand(self):
         self.seen.clear()
         self.hand.clear()
