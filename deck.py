@@ -36,9 +36,14 @@ class Deck:
                 if i not in change:
                     new_hand.append(self.hand[i])
             self.hand = new_hand
+            self.first_draw()
 
 
     def card_drop(self):
         drop = input("Choose cards to drop (0-4), with space between each number").split(" ")
         drop = list(map(int, drop))
         self.second_draw(change=drop)
+
+    def clear_hand(self):
+        self.seen.clear()
+        self.hand.clear()
