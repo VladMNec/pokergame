@@ -46,19 +46,19 @@ class KeepScore():
         elif end_result == "four":
             print("Four of a kind")
             self.credits += 3000
-
-        # Check for straights and flushes
-        if max(hand_nums) == 13 and 1 in hand_nums:
-            hand_nums = hand_nums[1:] + [14]
-        if hand_nums == list(range(min(hand_nums), max(hand_nums)+1)) and hand_kinds.count(hand_kinds[0]) == len(hand_kinds):
-            print("Straight Flush!!")
-            self.credits += 5000
-        elif hand_kinds.count(hand_kinds[0]) == len(hand_kinds):
-            print("Flush")
-            self.credits += 800
-        elif hand_nums == list(range(min(hand_nums), max(hand_nums)+1)):
-            print("Straight")
-            self.credits += 600
+        else:
+            # Check for straights and flushes
+            if max(hand_nums) == 13 and 1 in hand_nums:
+                hand_nums = hand_nums[1:] + [14]
+            if hand_nums == list(range(min(hand_nums), max(hand_nums)+1)) and hand_kinds.count(hand_kinds[0]) == len(hand_kinds):
+                print("Straight Flush!!")
+                self.credits += 5000
+            elif hand_kinds.count(hand_kinds[0]) == len(hand_kinds):
+                print("Flush")
+                self.credits += 800
+            elif hand_nums == list(range(min(hand_nums), max(hand_nums)+1)):
+                print("Straight")
+                self.credits += 600
 
     def game_over(self):
         if self.credits <= 0:
